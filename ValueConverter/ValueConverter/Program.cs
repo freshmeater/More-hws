@@ -11,20 +11,18 @@ namespace ValueConverter
         /// <summary>
         /// Главная точка входа для приложения.
         /// </summary>
-        public static Dictionary<string, decimal> Values = new Dictionary<string, decimal>();
         [STAThread]
         static void Main()
         {
-            Values.Add("USD", 1);
-            Values.Add("EUR", 0.84m);
-            Values.Add("RUB", 76);
-            Values.Add("UAH", 28);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Form1 form = new Form1(Values);
-            Counter a = new Counter(form);
-            a.ResultCounted += form.WriteResult;
-            Application.Run(form);
+            Currencies.AddCurrency(new KeyValuePair<string,decimal>("USD", 1m));
+            Currencies.AddCurrency(new KeyValuePair<string, decimal>("EUR", 0.84m));
+            Currencies.AddCurrency(new KeyValuePair<string, decimal>("RUB", 76));
+            Currencies.AddCurrency(new KeyValuePair<string, decimal>("UAH", 28));
+            FrontIneraction front = new FrontIneraction();
+            Counter a = new Counter(front);
+            front.Run();
         }
     }
 }
