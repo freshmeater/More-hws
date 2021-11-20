@@ -6,7 +6,7 @@ namespace LongArithmetic
 {
     class BigNumber
     {
-        private readonly static int CellSize = 8;
+        private readonly static int CellSize = 9;
         private readonly static int NumberOfCells = 20;
         private readonly static int MaxCellValue = 999_999_999;
         public int[] Number ;
@@ -18,8 +18,8 @@ namespace LongArithmetic
         }
 
         //To initialize numbers that bigger than default int, every 8th sign from the end needs to be separated by ','
-        //Example: "BigNumber a = new BigNumber(12345678, 15265384);" - a will contain 1234567815265384
-        //But "BigNumber a = new BigNumber(123, 456)" - 12300000456
+        //Example: "BigNumber a = new BigNumber(123456789, 152653849);" - a will contain 123456789152653849
+        //But "BigNumber a = new BigNumber(123, 456)" - 123000000456
         public BigNumber(params int[] number)
         {
             Number = FillBigNumberWithArray(number);
@@ -63,14 +63,33 @@ namespace LongArithmetic
             return result;
         }
 
-/*        public override string ToString()
+        public override string ToString()
         {
             string resultNumber = string.Empty;
+            string temp = CreateTemp();
             for(int i = NumberOfCells - 1; i >= 0; i--)
             {
-                
+                string tempClone = temp;
+                int tempNumber = Number[i];
+                for (int j = CellSize-1; j >= 0; j--)
+                {
+                    int k = 10;
+                    tempClone += tempNumber % k;
+                    tempNumber /= k;
+                }
+                resultNumber += tempClone;
             }
-            return resultNumber;
-        }*/
+            return resultNumber.TrimZeros();
+        }
+
+        private string CreateTemp()
+        {
+            string result = string.Empty;
+            for(int i = 0; i < CellSize; i++)
+            {
+                result += 0;
+            }
+            return result;
+        }
     }
 }
