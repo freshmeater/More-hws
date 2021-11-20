@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29905.134
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LongArithmetic", "LongArithmetic\LongArithmetic.csproj", "{4904A4AF-0EB8-4B39-9FCA-027B4DFF7681}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4904A4AF-0EB8-4B39-9FCA-027B4DFF7681}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4904A4AF-0EB8-4B39-9FCA-027B4DFF7681}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4904A4AF-0EB8-4B39-9FCA-027B4DFF7681}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4904A4AF-0EB8-4B39-9FCA-027B4DFF7681}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5714777A-4A11-4806-A6B6-A3A50E3D19D6}
+	EndGlobalSection
+EndGlobal

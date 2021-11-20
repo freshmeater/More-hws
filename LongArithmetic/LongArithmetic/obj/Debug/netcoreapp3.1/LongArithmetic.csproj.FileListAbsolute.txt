@@ -1,0 +1,11 @@
+C:\Users\User\source\repos\LongArithmetic\LongArithmetic\bin\Debug\netcoreapp3.1\LongArithmetic.exe
+C:\Users\User\source\repos\LongArithmetic\LongArithmetic\bin\Debug\netcoreapp3.1\LongArithmetic.deps.json
+C:\Users\User\source\repos\LongArithmetic\LongArithmetic\bin\Debug\netcoreapp3.1\LongArithmetic.runtimeconfig.json
+C:\Users\User\source\repos\LongArithmetic\LongArithmetic\bin\Debug\netcoreapp3.1\LongArithmetic.runtimeconfig.dev.json
+C:\Users\User\source\repos\LongArithmetic\LongArithmetic\bin\Debug\netcoreapp3.1\LongArithmetic.dll
+C:\Users\User\source\repos\LongArithmetic\LongArithmetic\bin\Debug\netcoreapp3.1\LongArithmetic.pdb
+C:\Users\User\source\repos\LongArithmetic\LongArithmetic\obj\Debug\netcoreapp3.1\LongArithmetic.csprojAssemblyReference.cache
+C:\Users\User\source\repos\LongArithmetic\LongArithmetic\obj\Debug\netcoreapp3.1\LongArithmetic.AssemblyInfoInputs.cache
+C:\Users\User\source\repos\LongArithmetic\LongArithmetic\obj\Debug\netcoreapp3.1\LongArithmetic.AssemblyInfo.cs
+C:\Users\User\source\repos\LongArithmetic\LongArithmetic\obj\Debug\netcoreapp3.1\LongArithmetic.dll
+C:\Users\User\source\repos\LongArithmetic\LongArithmetic\obj\Debug\netcoreapp3.1\LongArithmetic.pdb

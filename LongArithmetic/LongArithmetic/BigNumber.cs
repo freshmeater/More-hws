@@ -17,6 +17,10 @@ namespace LongArithmetic
             Number = new int[NumberOfCells];
         }
 
+        public BigNumber(BigNumber number)
+        {
+            number.Number.CopyTo(Number, NumberOfCells);
+        }
         //To initialize numbers that bigger than default int, every 8th sign from the end needs to be separated by ','
         //Example: "BigNumber a = new BigNumber(123456789, 152653849);" - a will contain 123456789152653849
         //But "BigNumber a = new BigNumber(123, 456)" - 123000000456
