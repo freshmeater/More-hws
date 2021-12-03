@@ -7,23 +7,42 @@ namespace LongArithmetic
     class BigNumber
     {
         private readonly static int CellSize = 9;
-        private readonly static int NumberOfCells = 20;
+        private readonly static int NumberOfCells = 10;
         private readonly static int MaxCellValue = 999_999_999;
         private readonly static int NumberSystem = 1_000_000_000;
         public bool Positiveness;
         public int[] Number ;
 
 
-        public BigNumber()
+        public BigNumber(bool sign = true)
         {
             Number = new int[NumberOfCells];
-            Positiveness = true;
+            Positiveness = sign;
+        }
+
+        public BigNumber(int number)
+        {
+            Number = new int[NumberOfCells];
+            Number[0] = number % NumberSystem;
+            Number[1] = number / NumberSystem;
+            if (number > 0)
+                Positiveness = true;
+            else
+                Positiveness = false;
         }
 
         public BigNumber(BigNumber number)
         {
-            number.Number.CopyTo(Number, NumberOfCells);
-            Positiveness = true;
+            Number = new int[NumberOfCells];
+            number.Number.CopyTo(Number, 0);
+            Positiveness = number.Positiveness;
+        }
+
+        public BigNumber(BigNumber number, bool sign)
+        {
+            Number = new int[NumberOfCells];
+            number.Number.CopyTo(Number, 0);
+            Positiveness = sign;
         }
         //To initialize numbers that bigger than default int, every 8th sign from the end needs to be separated by ','
         //Example: "BigNumber a = new BigNumber(123456789, 152653849);" - a will contain 123456789152653849
@@ -54,15 +73,59 @@ namespace LongArithmetic
 
         public static BigNumber operator +(BigNumber a, int b)
         {
-            int c = b % NumberSystem;
-            int d = b / NumberSystem;
-            return a + new BigNumber(d,c);
+            return a + new BigNumber(b);
         }
 
         public static BigNumber operator + (BigNumber a, BigNumber b)
         {
+            if (a.Positiveness != b.Positiveness)
+            {
+
+                if (a.Positiveness)
+                {
+                    BigNumber c = new BigNumber(b, b.Positiveness.BoolInvert());
+                    return a - c;
+                }
+                else
+                {
+                    BigNumber c = new BigNumber(a, a.Positiveness.BoolInvert());
+                    return b - c;
+                }
+            }
+            return Summarise(a, b);
+        }
+
+        public static BigNumber operator -(BigNumber a, BigNumber b)
+        {
+            if(a.Positiveness != b.Positiveness)
+            {
+                BigNumber c = new BigNumber(b, b.Positiveness.BoolInvert());
+                return Summarise(a, c);
+            }
+            return Substraction(a, b);
+        }
+
+        public static bool operator >(BigNumber a, BigNumber b)
+        {
+            if (a.Positiveness != b.Positiveness)
+                return a.Positiveness;
+
+            return SameSignComprasion(a,b);
+        }
+
+        public static bool operator <(BigNumber a, BigNumber b)
+        {
+            if (a.Positiveness != b.Positiveness)
+                return b.Positiveness;
+
+            return SameSignComprasion(b, a);
+        }
+
+        static BigNumber Summarise(BigNumber a, BigNumber b)
+        {
+
+            BigNumber result = new BigNumber(a);
             int NextCellAddition = 0;
-            BigNumber result = new BigNumber();
             for (int i = 0; i < NumberOfCells; i++)
             {
                 result.Number[i] = a.Number[i] + b.Number[i] + NextCellAddition;
@@ -72,40 +135,11 @@ namespace LongArithmetic
             return result;
         }
 
-        public static BigNumber operator -(BigNumber a, BigNumber b)
-        {
-            BigNumber c = new BigNumber();
-            if(a.Positiveness !^ b.Positiveness)
-            {
-                c = a + b;
-                c.Positiveness = a.Positiveness;
-                return c;
-            }
-            return Substraction(a, b);
-        }
-
-        public static bool operator >(BigNumber a, BigNumber b)
-        {
-            if (a.Positiveness ^ b.Positiveness)
-            {
-                if (a.Positiveness == true)
-                    return true;
-                else
-                    return false;
-            }
-            return SameSignComprasion(a,b);
-        }
-
-        public static bool operator <(BigNumber a, BigNumber b)
-        {
-            return true;
-        }
-
         static BigNumber Substraction(BigNumber a, BigNumber b)
         {
-            BigNumber result = new BigNumber();
             BigNumber number1 = UnsignedMax(a, b);
             BigNumber number2 = UnsignedMin(a, b);
+            BigNumber result = new BigNumber(a > b ? true : false);
             int debt = 0;
             for (int i = 0; i < NumberOfCells; i++) 
             {
@@ -117,19 +151,20 @@ namespace LongArithmetic
                 }
                 else debt = 0;
             }
+
             return result;
         }
 
         public static BigNumber UnsignedMax(BigNumber a, BigNumber b)
         {
-            if (a.Positiveness && b.Positiveness && false)
+            if (a.Positiveness == false && b.Positiveness == false)
                 return Min(b, a);
             return Max(b, a);
         }
 
         public static BigNumber UnsignedMin(BigNumber a, BigNumber b)
         {
-            if (a.Positiveness && b.Positiveness && false)
+            if (a.Positiveness == false && b.Positiveness == false)
                 return Max(a, b);
             return Min(a, b);
         }
@@ -156,8 +191,8 @@ namespace LongArithmetic
                 if(a.Number[i] != b.Number[i])
                 {
                     if (a.Number[i] > b.Number[i])
-                        return true;
-                    else return false;
+                        return true == a.Positiveness;
+                    else return false == a.Positiveness;
                 }
                 i--;
             }

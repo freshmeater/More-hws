@@ -22,7 +22,16 @@ namespace LongArithmetic
                     continue;
                 }
             }
+            if (result == "" || result == "-")
+                return "0";
             return result;
+        }
+
+        public static bool BoolInvert(this bool boolToConvert)
+        {
+            if (boolToConvert)
+                return false;
+            return true;
         }
     }
 }
