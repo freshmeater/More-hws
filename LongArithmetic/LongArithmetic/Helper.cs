@@ -33,5 +33,15 @@ namespace LongArithmetic
                 return false;
             return true;
         }
+
+        public static int[] ArrayFromLongwithAdditionalDivisons(long a, int division)
+        {
+            int NumberSystem = BigNumber.NumberSystem;
+            int[] b = new int[2 + division];
+            b[division] = (int)a % NumberSystem;
+            a /= NumberSystem;
+            b[division + 1] = (int)a % NumberSystem;
+            return b;
+        }
     }
 }

@@ -6,10 +6,10 @@ namespace LongArithmetic
 {
     class BigNumber
     {
-        private readonly static int CellSize = 9;
-        private readonly static int NumberOfCells = 10;
-        private readonly static int MaxCellValue = 999_999_999;
-        private readonly static int NumberSystem = 1_000_000_000;
+        readonly static int CellSize = 9;
+        readonly static int NumberOfCells = 11;
+        readonly static int MaxCellValue = 999_999_999;
+        public readonly static int NumberSystem = 1_0000;
         public bool Positiveness;
         public int[] Number ;
 
@@ -22,13 +22,18 @@ namespace LongArithmetic
 
         public BigNumber(int number)
         {
-            Number = new int[NumberOfCells];
-            Number[0] = number % NumberSystem;
-            Number[1] = number / NumberSystem;
+            Number = Number = MakeNumberSystemArrayFromInt(number);
             if (number > 0)
                 Positiveness = true;
             else
                 Positiveness = false;
+        }
+
+        public BigNumber(int number, bool sign)
+        {
+            Number = MakeNumberSystemArrayFromInt(number);
+            
+            Positiveness = sign;
         }
 
         public BigNumber(BigNumber number)
@@ -53,6 +58,19 @@ namespace LongArithmetic
             Positiveness = true;
         }
 
+        public static int[] MakeNumberSystemArrayFromInt(int a)
+        {
+            int[] resultArray = new int[NumberOfCells];
+            int i = 0;
+            while (a > 0)
+            {
+                resultArray[i] = a % NumberSystem;
+                a /= NumberSystem;
+                i++;
+            }
+            return resultArray;
+        }
+
         private int[] FillBigNumberWithArray(int[] numberToPut)
         {
             int[] Number = new int[NumberOfCells];
@@ -74,6 +92,25 @@ namespace LongArithmetic
         public static BigNumber operator +(BigNumber a, int b)
         {
             return a + new BigNumber(b);
+        }
+
+        public static BigNumber operator +(int[] a, BigNumber b)
+        {
+            return b + a;
+        }
+
+        public static BigNumber operator +(BigNumber a, int[] b)
+        {
+            BigNumber result = new BigNumber(a);
+
+            int limiter = Math.Min(NumberOfCells, b.Length); 
+
+            for (int i = 0; i < limiter; i++)
+            {
+                result.Number[i] += b[i];
+            }
+
+            return result;
         }
 
         public static BigNumber operator + (BigNumber a, BigNumber b)
@@ -103,6 +140,19 @@ namespace LongArithmetic
                 return Summarise(a, c);
             }
             return Substraction(a, b);
+        }
+
+        public static BigNumber operator *(BigNumber a, int b)
+        {
+            BigNumber result = new BigNumber(a.Positiveness == (b > 0));
+
+            for(int i = 0; i < NumberOfCells; i++)
+            {
+                long c = ((long)a.Number[i]) * b;
+                result += Helper.ArrayFromLongwithAdditionalDivisons(c, i);
+            }
+
+            return result;
         }
 
         public static bool operator >(BigNumber a, BigNumber b)
