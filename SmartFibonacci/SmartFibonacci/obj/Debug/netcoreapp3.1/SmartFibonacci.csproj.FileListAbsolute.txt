@@ -1,0 +1,11 @@
+C:\Users\User\source\repos\SmartFibonacci\SmartFibonacci\bin\Debug\netcoreapp3.1\SmartFibonacci.exe
+C:\Users\User\source\repos\SmartFibonacci\SmartFibonacci\bin\Debug\netcoreapp3.1\SmartFibonacci.deps.json
+C:\Users\User\source\repos\SmartFibonacci\SmartFibonacci\bin\Debug\netcoreapp3.1\SmartFibonacci.runtimeconfig.json
+C:\Users\User\source\repos\SmartFibonacci\SmartFibonacci\bin\Debug\netcoreapp3.1\SmartFibonacci.runtimeconfig.dev.json
+C:\Users\User\source\repos\SmartFibonacci\SmartFibonacci\bin\Debug\netcoreapp3.1\SmartFibonacci.dll
+C:\Users\User\source\repos\SmartFibonacci\SmartFibonacci\bin\Debug\netcoreapp3.1\SmartFibonacci.pdb
+C:\Users\User\source\repos\SmartFibonacci\SmartFibonacci\obj\Debug\netcoreapp3.1\SmartFibonacci.csprojAssemblyReference.cache
+C:\Users\User\source\repos\SmartFibonacci\SmartFibonacci\obj\Debug\netcoreapp3.1\SmartFibonacci.AssemblyInfoInputs.cache
+C:\Users\User\source\repos\SmartFibonacci\SmartFibonacci\obj\Debug\netcoreapp3.1\SmartFibonacci.AssemblyInfo.cs
+C:\Users\User\source\repos\SmartFibonacci\SmartFibonacci\obj\Debug\netcoreapp3.1\SmartFibonacci.dll
+C:\Users\User\source\repos\SmartFibonacci\SmartFibonacci\obj\Debug\netcoreapp3.1\SmartFibonacci.pdb
