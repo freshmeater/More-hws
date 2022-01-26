@@ -37,7 +37,7 @@ namespace SmartFibonacci
             if (n % 2 == 0)
                 return GetMultipleOfTwo(n);
 
-            return CountFib(n - 1) + CountFib(n - 2);
+            return GetNotMultipleOfTwo(n);
         }
 
         static long GetMultipleOfFive(int n)
@@ -65,6 +65,15 @@ namespace SmartFibonacci
             long b = CountFib(n/2 - 1);
 
             return a*a - b*b;
+        }
+
+        static long GetNotMultipleOfTwo(int n)
+        {
+            long a = AlternativeCount(n / 2 + 1);
+            long b = AlternativeCount(n / 2);
+            long res = a * a + b * b;
+
+            return res;
         }
 
         static long AlternativeCount(int n)
